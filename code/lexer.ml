@@ -18,7 +18,7 @@ let rec lex (input: in_channel) :  string list =
 
   let rec next (c:char) =
     match c with
-    | '(' | ')' -> (let t = String.make 1 c in emit t; (*Printf.printf("%s %!") t; *) next (input_char input))
+    | '(' | ')' -> (let t = String.make 1 c in emit t; next (input_char input))
     | '\t'| ' ' | '\n' | '\r' -> next (input_char input)
     | '*'|'/'|'>'|'<'|'='|'?'|'!'|'-'|'+' -> (emit (String.make 1 c); next (input_char input))
     | 'A'..'Z' | 'a'..'z' -> lex_word c (* keyword or variable name MUST start with letter*)
