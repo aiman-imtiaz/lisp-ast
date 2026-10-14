@@ -13,6 +13,8 @@ let get_atom token =
   try
     if Str.string_match (Str.regexp "^[0-9]+") token 0 
     then Atom (Literal (CInt (int_of_string token)))
+    else if Str.string_match (Str.regexp "\"") token 0 
+    then Atom (Literal (CStr token))
     else if String.equal "t" token then Atom(Literal (CBool true))
     else if String.equal "f" token then Atom(Literal (CBool false))
     else Atom(Symbol token)
