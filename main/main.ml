@@ -8,7 +8,7 @@ let () =
   try
     Printf.printf("> %!") ;
     let tokens = lex in_channel in
-    print_tokens tokens; 
+    (* print_tokens tokens;  *)
     let ast = parse tokens in
     print_ast ast
   with
